@@ -16,6 +16,12 @@
 	<string>blank_excersise</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We need your location at all times to provide continuous location-based services.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location even when the app is in the background to offer seamless experience.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to provide location-based services.</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>

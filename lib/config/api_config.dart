@@ -1,3 +1,3 @@
 class APIConfig {
-  static String apiBaseUrl = "https://api.blankstreet.com";
+  static String apiBaseUrl = "https://api.blankstreet.com/";
 }
