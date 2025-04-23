@@ -13,10 +13,12 @@ class LocationScreenState extends Equatable {
   final LocationScreenStateStatus status;
   final APIError? error;
   final int displayedLocationsCount;
+  final bool isSearching;
 
   const LocationScreenState(
       {this.search,
       this.fetchedLocations,
+      this.isSearching = false,
       this.displayedLocationsCount = 10,
       this.status = LocationScreenStateStatus.initial,
       this.error});
@@ -26,6 +28,7 @@ class LocationScreenState extends Equatable {
     List<Location>? fetchedLocations,
     LocationScreenStateStatus? status,
     int? displayedLocationsCount,
+    bool? isSearching,
     APIError? error,
   }) {
     return LocationScreenState(
@@ -34,6 +37,7 @@ class LocationScreenState extends Equatable {
       status: status ?? this.status,
       displayedLocationsCount:
           displayedLocationsCount ?? this.displayedLocationsCount,
+      isSearching: isSearching ?? this.isSearching,
       error: error ?? this.error,
     );
   }
@@ -72,6 +76,7 @@ class LocationScreenState extends Equatable {
         search,
         fetchedLocations,
         status,
+        isSearching,
         displayedLocationsCount,
         error,
       ];

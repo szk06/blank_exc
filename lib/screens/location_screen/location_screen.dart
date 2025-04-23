@@ -3,6 +3,7 @@ import 'package:blank_excersise/components/design_components/sliver_box_adapter.
 import 'package:blank_excersise/components/error/center_error_widget.dart';
 import 'package:blank_excersise/screens/location_screen/bloc/location_screen_bloc.dart';
 import 'package:blank_excersise/screens/location_screen/components/location_card.dart';
+import 'package:blank_excersise/screens/location_screen/components/locations_search.dart';
 import 'package:blank_excersise/screens/location_screen/components/scrollable_header.dart';
 import 'package:blank_excersise/user_location/user_location_handler.dart';
 import 'package:flutter/material.dart';
@@ -87,43 +88,72 @@ class _LocationScreenBuilder extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: CustomScrollView(
                           controller: scrollController,
-                          slivers: [
-                            SliverBoxAdapter(),
-                            SliverList.list(children: [
-                              ScrollableHeader(),
-                              Divider(),
-                              Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Text(
-                                  "${state.totalResults} results nearby",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .copyWith(
-                                        fontWeight: FontWeight.bold,
+                          slivers: !state.isSearching
+                              ? [
+                                  SliverBoxAdapter(),
+                                  SliverList.list(children: [
+                                    ScrollableHeader(
+                                      onSearchPressed: () {
+                                        bool isSearching = !state.isSearching;
+                                        context.read<LocationScreenBloc>().add(
+                                            OnIsSearching(
+                                                isSearching: isSearching));
+                                      },
+                                    ),
+                                    Divider(),
+                                    Padding(
+                                      padding: EdgeInsets.all(8),
+                                      child: Text(
+                                        "${state.totalResults} results nearby",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                       ),
-                                ),
-                              ),
-                              ...state.locations.map(
-                                (locationItem) => LocationCard(
-                                  location: locationItem,
-                                  onSelect: (location) {},
-                                ),
-                              ),
-                              state.showViewMore
-                                  ? Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: ElevatedButton(
-                                        onPressed: () {
-                                          context
-                                              .read<LocationScreenBloc>()
-                                              .add(OnViewMore());
-                                        },
-                                        child: Text("View More")),
+                                    ),
+                                    ...state.locations.map(
+                                      (locationItem) => LocationCard(
+                                        location: locationItem,
+                                        onSelect: (location) {},
+                                      ),
+                                    ),
+                                    state.showViewMore
+                                        ? Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: ElevatedButton(
+                                                onPressed: () {
+                                                  context
+                                                      .read<
+                                                          LocationScreenBloc>()
+                                                      .add(OnViewMore());
+                                                },
+                                                child: Text("View More")),
+                                          )
+                                        : SizedBox.shrink()
+                                  ])
+                                ]
+                              : [
+                                  SliverBoxAdapter(),
+                                  SliverList.list(
+                                    children: [
+                                      LocationsSearch(onCancel: () {
+                                        context.read<LocationScreenBloc>().add(
+                                            OnSearchQueryChange(
+                                                searchQuery: ""));
+                                        context.read<LocationScreenBloc>().add(
+                                            OnIsSearching(isSearching: false));
+                                      }, onSearchConfirmed: (text) {
+                                        context.read<LocationScreenBloc>().add(
+                                            OnSearchQueryChange(
+                                                searchQuery: text));
+                                        context.read<LocationScreenBloc>().add(
+                                            OnIsSearching(isSearching: false));
+                                      })
+                                    ],
                                   )
-                                  : SizedBox.shrink()
-                            ])
-                          ],
+                                ],
                         ),
                       ));
                     })

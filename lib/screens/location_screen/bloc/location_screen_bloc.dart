@@ -30,6 +30,11 @@ class LocationScreenBloc
         displayedLocationsCount: newCount,
       ));
     });
+    on<OnIsSearching>((event, emit) {
+      emit(state.copyWith(
+        isSearching: event.isSearching,
+      ));
+    });
   }
 
   Future<void>? _loadData(

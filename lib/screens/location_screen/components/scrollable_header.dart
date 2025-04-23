@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ScrollableHeader extends StatelessWidget {
-  const ScrollableHeader({super.key});
+  final VoidCallback onSearchPressed;
+
+  const ScrollableHeader({super.key, required this.onSearchPressed});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        "Scrollable Header",
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "Scrollable Header",
+        ),
+        IconButton(onPressed: onSearchPressed, icon: Icon(Icons.search))
+      ],
     );
   }
 }

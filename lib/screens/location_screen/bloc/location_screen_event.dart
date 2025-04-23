@@ -11,3 +11,9 @@ class OnSearchQueryChange extends LocationScreenEvent {
 }
 
 class OnViewMore extends LocationScreenEvent {}
+
+class OnIsSearching extends LocationScreenEvent {
+  final bool isSearching;
+
+  OnIsSearching({required this.isSearching});
+}
