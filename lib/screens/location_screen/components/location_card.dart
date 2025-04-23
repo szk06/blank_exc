@@ -41,8 +41,18 @@ class LocationCard extends StatelessWidget {
                 children: [
                   Text(
                     location.name,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
+                  location.distanceInMile != null
+                      ? Text(
+                          '${location.distanceInMile!.toStringAsFixed(2)} miles',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        )
+                      : const SizedBox(),
+                  Text(location.shortAddress),
+                  Text(location.closingStatus)
                 ],
               ),
             ))

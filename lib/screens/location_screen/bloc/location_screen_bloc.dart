@@ -17,6 +17,19 @@ class LocationScreenBloc
         search: event.searchQuery,
       ));
     });
+    on<OnViewMore>((event, emit) {
+      if (state.fetchedLocations == null ||
+          state.displayedLocationsCount >= state.fetchedLocations!.length) {
+        return;
+      }
+      int newCount = state.displayedLocationsCount + 10;
+      if (newCount > state.fetchedLocations!.length) {
+        newCount = state.fetchedLocations!.length;
+      }
+      emit(state.copyWith(
+        displayedLocationsCount: newCount,
+      ));
+    });
   }
 
   Future<void>? _loadData(

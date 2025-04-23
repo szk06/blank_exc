@@ -4,6 +4,7 @@ import 'package:blank_excersise/components/error/center_error_widget.dart';
 import 'package:blank_excersise/screens/location_screen/bloc/location_screen_bloc.dart';
 import 'package:blank_excersise/screens/location_screen/components/location_card.dart';
 import 'package:blank_excersise/screens/location_screen/components/scrollable_header.dart';
+import 'package:blank_excersise/user_location/user_location_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,6 +18,12 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  @override
+  void initState() {
+    UserLocation().requestUserLocation();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,6 +110,18 @@ class _LocationScreenBuilder extends StatelessWidget {
                                   onSelect: (location) {},
                                 ),
                               ),
+                              state.showViewMore
+                                  ? Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ElevatedButton(
+                                        onPressed: () {
+                                          context
+                                              .read<LocationScreenBloc>()
+                                              .add(OnViewMore());
+                                        },
+                                        child: Text("View More")),
+                                  )
+                                  : SizedBox.shrink()
                             ])
                           ],
                         ),

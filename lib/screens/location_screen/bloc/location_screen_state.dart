@@ -59,6 +59,10 @@ class LocationScreenState extends Equatable {
             : displayedLocationsCount);
   }
 
+  bool get showViewMore {
+    return filteredLocations.length > displayedLocationsCount;
+  }
+
   int get totalResults {
     return filteredLocations.length;
   }

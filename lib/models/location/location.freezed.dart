@@ -20,8 +20,8 @@ mixin _$Location {
   String get name;
   String get address;
   String get shortAddress;
-  double get latitude;
-  double get longitude;
+  double? get latitude;
+  double? get longitude;
   String? get imgUrl;
   Map<String, OpeningHours>? get openingHoursSystem;
   String? get marketName;
@@ -122,8 +122,8 @@ abstract mixin class $LocationCopyWith<$Res> {
       String name,
       String address,
       String shortAddress,
-      double latitude,
-      double longitude,
+      double? latitude,
+      double? longitude,
       String? imgUrl,
       Map<String, OpeningHours>? openingHoursSystem,
       String? marketName,
@@ -154,8 +154,8 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
     Object? name = null,
     Object? address = null,
     Object? shortAddress = null,
-    Object? latitude = null,
-    Object? longitude = null,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
     Object? imgUrl = freezed,
     Object? openingHoursSystem = freezed,
     Object? marketName = freezed,
@@ -189,14 +189,14 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
           ? _self.shortAddress
           : shortAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      latitude: null == latitude
+      latitude: freezed == latitude
           ? _self.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
+              as double?,
+      longitude: freezed == longitude
           ? _self.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       imgUrl: freezed == imgUrl
           ? _self.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
@@ -254,8 +254,8 @@ class _Location extends Location {
       required this.name,
       required this.address,
       required this.shortAddress,
-      required this.latitude,
-      required this.longitude,
+      this.latitude,
+      this.longitude,
       this.imgUrl,
       final Map<String, OpeningHours>? openingHoursSystem,
       this.marketName,
@@ -283,9 +283,9 @@ class _Location extends Location {
   @override
   final String shortAddress;
   @override
-  final double latitude;
+  final double? latitude;
   @override
-  final double longitude;
+  final double? longitude;
   @override
   final String? imgUrl;
   final Map<String, OpeningHours>? _openingHoursSystem;
@@ -413,8 +413,8 @@ abstract mixin class _$LocationCopyWith<$Res>
       String name,
       String address,
       String shortAddress,
-      double latitude,
-      double longitude,
+      double? latitude,
+      double? longitude,
       String? imgUrl,
       Map<String, OpeningHours>? openingHoursSystem,
       String? marketName,
@@ -445,8 +445,8 @@ class __$LocationCopyWithImpl<$Res> implements _$LocationCopyWith<$Res> {
     Object? name = null,
     Object? address = null,
     Object? shortAddress = null,
-    Object? latitude = null,
-    Object? longitude = null,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
     Object? imgUrl = freezed,
     Object? openingHoursSystem = freezed,
     Object? marketName = freezed,
@@ -480,14 +480,14 @@ class __$LocationCopyWithImpl<$Res> implements _$LocationCopyWith<$Res> {
           ? _self.shortAddress
           : shortAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      latitude: null == latitude
+      latitude: freezed == latitude
           ? _self.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
+              as double?,
+      longitude: freezed == longitude
           ? _self.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       imgUrl: freezed == imgUrl
           ? _self.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable

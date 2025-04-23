@@ -12,8 +12,8 @@ _Location _$LocationFromJson(Map<String, dynamic> json) => _Location(
       name: json['name'] as String,
       address: json['address'] as String,
       shortAddress: json['shortAddress'] as String,
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
       imgUrl: json['imgUrl'] as String?,
       openingHoursSystem:
           (json['openingHoursSystem'] as Map<String, dynamic>?)?.map(
